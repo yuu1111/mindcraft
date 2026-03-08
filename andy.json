@@ -1,4 +1,14 @@
 {
 	"name": "andy",
-	"model": "qwen35-0_8b-q4km:latest"
+	"model": {
+		"api": "ollama",
+		"model": "qwen35-0_8b-q4km:latest",
+		"params": {
+			"options": {
+				"num_predict": 512,
+				"stop": ["User:", "\n\n\n"]
+			}
+		}
+	},
+	"embedding": "ollama/nomic-embed-text"
 }

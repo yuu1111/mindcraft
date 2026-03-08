@@ -94,7 +94,7 @@ Please follow the installation docs in the README to install mindcraft. You can 
 If you don't own Minecraft, you can run a limited version solely for offline games using these instructions:
 
 > [!Warning]
-Unofficial offline launchers (e.g., TLauncher, Prism Launcher or forks of community launchers) are not endorsed by this project and may be unsafe or contain malware. Use them at your own risk.  
+Unofficial offline launchers (e.g., TLauncher, Prism Launcher or forks of community launchers) are not endorsed by this project and may be unsafe or contain malware. Use them at your own risk.
 For guaranteed safety, please [purchase the game](https://www.minecraft.net/) and use the official launcher.
 
 1. Download the [Prism Launcher](https://github.com/Diegiwg/PrismLauncher-Cracked).
