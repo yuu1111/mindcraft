@@ -1,6 +1,4 @@
 {
     "name": "andy",
-
-    "model": "gpt-5-nano"
-
+    "model": "qwen35-0_8b-q4km:latest"
 }

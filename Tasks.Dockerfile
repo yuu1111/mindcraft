@@ -1,12 +1,13 @@
 # Specify a base image
 # FROM ubuntu:22.04
-FROM node:18
+FROM oven/bun:latest-debian
 
 #Install some dependencies
 
 RUN apt-get -y update
 RUN apt-get -y install git
 RUN apt-get -y install unzip
+RUN apt-get -y install curl
 RUN apt-get -y install python3
 RUN apt-get -y install python3-pip
 RUN apt-get -y install python3-boto3
@@ -18,7 +19,7 @@ WORKDIR /mindcraft
 COPY ./server_data.zip /mindcraft
 RUN unzip server_data.zip
 
-RUN npm install
+RUN bun install
 
 
 # Copy the rest of the application code to the working directory

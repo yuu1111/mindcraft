@@ -1,4 +1,4 @@
-FROM node:22-bookworm-slim
+FROM oven/bun:latest-debian
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -6,6 +6,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     # git \
     # unzip \
+    nodejs \
     python3 \
     python-is-python3 \
     python3-pip \
@@ -30,8 +31,8 @@ WORKDIR /app
 
 COPY package*.json .
 COPY patches ./patches
-RUN npm install
+RUN bun install
 
 COPY . .
 
-CMD ["npm", "start"]
+CMD ["bun", "start"]
