@@ -1,5 +1,7 @@
-import { ESLint } from "eslint";
-import { mkdirSync, readFile, writeFile } from "fs";
+import { execFile } from "child_process";
+import { mkdirSync, readFile, writeFile, writeFileSync, unlinkSync } from "fs";
+import { tmpdir } from "os";
+import { join } from "path";
 import { Vec3 } from "vec3";
 import { lockdown, makeCompartment } from "./library/lockdown.js";
 import * as skills from "./library/skills.js";
@@ -126,29 +128,47 @@ export class Coder {
 			return result;
 		}
 
-		const eslint = new ESLint();
-		const results = await eslint.lintText(code);
-		const codeLines = code.split("\n");
-		const exceptions = results.map((r) => r.messages).flat();
-
-		if (exceptions.length > 0) {
-			exceptions.forEach((exc, index) => {
-				if (exc.line && exc.column) {
-					const errorLine = codeLines[exc.line - 1]?.trim() || "Unable to retrieve error line content";
-					result += `#ERROR ${index + 1}\n`;
-					result += `Message: ${exc.message}\n`;
-					result += `Location: Line ${exc.line}, Column ${exc.column}\n`;
-					result += `Related Code Line: ${errorLine}\n`;
-				}
+		const lintResult = await this._biomeLint(code);
+		if (lintResult.length > 0) {
+			const codeLines = code.split("\n");
+			lintResult.forEach((exc, index) => {
+				const errorLine = exc.line ? codeLines[exc.line - 1]?.trim() || "Unable to retrieve error line content" : "";
+				result += `#ERROR ${index + 1}\n`;
+				result += `Message: ${exc.message}\n`;
+				if (exc.line) result += `Location: Line ${exc.line}\n`;
+				if (errorLine) result += `Related Code Line: ${errorLine}\n`;
 			});
 			result += "The code contains exceptions and cannot continue execution.";
 		} else {
-			return null; //no error
+			return null;
 		}
 
 		return result;
 	}
-	// write custom code to file and import it
+	async _biomeLint(code) {
+		const tmpFile = join(tmpdir(), `mindcraft_lint_${Date.now()}.js`);
+		try {
+			writeFileSync(tmpFile, code);
+			const output = await new Promise((resolve) => {
+				execFile("npx", ["@biomejs/biome", "lint", "--reporter", "json", tmpFile], { timeout: 15000 }, (_error, stdout) => {
+					resolve(stdout || "");
+				});
+			});
+			if (!output.trim()) return [];
+			const parsed = JSON.parse(output);
+			return (parsed.diagnostics || []).map((d) => ({
+				message: d.message || "Unknown error",
+				line: d.location?.start?.line,
+			}));
+		} catch {
+			return [];
+		} finally {
+			try {
+				unlinkSync(tmpFile);
+			} catch {}
+		}
+	}
+
 	// write custom code to file and prepare for evaluation
 	async _stageCode(code) {
 		code = this._sanitizeCode(code);

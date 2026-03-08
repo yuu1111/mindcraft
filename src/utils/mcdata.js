@@ -1,7 +1,7 @@
 import minecraftData from "minecraft-data";
 import { createBot } from "mineflayer";
 import plugin from "mineflayer-armor-manager";
-import { plugin as autoEat } from "mineflayer-auto-eat";
+import { loader as autoEat } from "mineflayer-auto-eat";
 import { plugin as collectblock } from "mineflayer-collectblock";
 import { pathfinder } from "mineflayer-pathfinder";
 import { plugin as pvp } from "mineflayer-pvp";

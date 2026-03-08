@@ -73,6 +73,7 @@ export function parseKickReason(reason) {
 
 // Centralized handler for disconnections.
 export function handleDisconnection(agentName, reason) {
+	console.error("[LoginGuard] Raw disconnect reason:", JSON.stringify(reason));
 	const { type, msg } = parseKickReason(reason);
 
 	// Format: [LoginGuard] Error Message
