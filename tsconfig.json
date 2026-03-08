@@ -4,14 +4,15 @@
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"allowJs": true,
-		"checkJs": true,
+		"checkJs": false,
 		"noEmit": true,
-		"strict": false,
+		"strict": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
+		"allowImportingTsExtensions": true,
 		"types": ["bun-types"]
 	},
-	"include": ["src/**/*", "main.js"],
+	"include": ["src/**/*", "main.js", "settings.ts"],
 	"exclude": ["node_modules"]
 }
