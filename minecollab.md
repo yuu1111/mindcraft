@@ -2,15 +2,15 @@
 
 ## Getting started with basic tasks
 
-To run a task you will first need to follow the setup instructions on the main README. Then you will need to do the following: 
+To run a task you will first need to follow the setup instructions on the main README. Then you will need to do the following:
 
 1. Install Minecraft (or a bootleg version you can use at your own risk)
 2. Launch the supported Minecraft version from the main README
-3. Open the world to LAN at 55916 
-4. To run a simple task that involves collecting 4 oak_logs run 
+3. Open the world to LAN at 55916
+4. To run a simple task that involves collecting 4 oak_logs run
 `node main.js --task_path tasks/basic/single_agent.json --task_id gather_oak_logs`
 
-Here is an example task json format: 
+Here is an example task json format:
 
 ```
 {
@@ -38,21 +38,21 @@ Here is an example task json format:
 }
 ```
 
-The `initial_inventory` is what the bot will have at the start of the episode, `target` refers to the target item and `number_of_target` refers to the number of target items the agent needs to collect to successfully complete the task. 
+The `initial_inventory` is what the bot will have at the start of the episode, `target` refers to the target item and `number_of_target` refers to the number of target items the agent needs to collect to successfully complete the task.
 
-If the agent successfully completes the task it will leave the game, otherwise it will leave the game after 300 seconds (specified in the `timeout` variable) 
+If the agent successfully completes the task it will leave the game, otherwise it will leave the game after 300 seconds (specified in the `timeout` variable)
 
 ## Minecollab Benchmark
 
 > Note: This repository has undergone significant changes since the initial release of the paper. If you want completely reproducible results please checkout our [reproducibility fork](https://github.com/icwhite/mindcraft)
 
-MineCollab is a versatile benchmark for assessing the embodied and collaborative communication abilities of agents across three unique types of tasks. 
+MineCollab is a versatile benchmark for assessing the embodied and collaborative communication abilities of agents across three unique types of tasks.
 
 ## Existing Task Types
 
 ### Cooking
 At the beginning of a cooking task episode, the agents are initialized with a goal to make a meal, e.g. they need to make cake and bread.
-The agents then need to coordinate the collection of ingredients through natural language communication (e.g. Andy collects wheat for the bread while Jill makes the cake) and combine them in a multi-step plan. 
+The agents then need to coordinate the collection of ingredients through natural language communication (e.g. Andy collects wheat for the bread while Jill makes the cake) and combine them in a multi-step plan.
 To assist them in collecting resources, agents are placed in a "cooking world" that possesses all of the items they need to complete the task, from livestock, to crops, to a smoker, furnace, and crafting table.
 Following a popular test of collaboration in humans, we further introduce a ``Hell's Kitchen'' variant of the cooking tasks where each agent is given the recipes for a small subset of the items they need to cook and must communicate the instructions with the other teammates.
 For example, if the task is to make a baked potato and a cake, one agent is given recipe for baked potato, but is required to bake the cake to complete the task, forcing them to ask their teammate for help in baking the potato.
@@ -64,7 +64,7 @@ You can view the cooking task in action [here](https://www.youtube.com/shorts/Fb
 ### Construction
 
 In the construction tasks, agents are directed to build structures from procedurally generated blueprints.
-Blueprints can also be downloaded from the internet and read into our blueprint format - enabling agents to build anything from pyramids to the Eiffel Tower. 
+Blueprints can also be downloaded from the internet and read into our blueprint format - enabling agents to build anything from pyramids to the Eiffel Tower.
 We choose evaluate primarily on our generated blueprints as they provide fine-grained control over task complexity, allowing us to systematically vary the depth of collaboration required---e.g. number of rooms in the interior of palace, or the amount and types of materials required for each room.
 At the beginning of each episode, agents are initialized with the blueprint, materials (e.g. stone, wood, doors, carpets) in such a way that no agent has the full resources or the expertise in terms of the types of tools that can be used to process the resources and complete the entire blueprint.
 For example, if the blueprint required a stone base and a wooden roof, one agent would be given access and the ability to manipulate stone, the other to wood.
@@ -72,9 +72,9 @@ Agents are evaluated via an edit distance based metric that judges how close the
 
 You can view the construction task in action [here](https://www.youtube.com/shorts/vuBycbn35Rw)
 
-### Crafting 
+### Crafting
 
-Crafting has long been the subject of Minecraft agent research---our crafting tasks encompass the entire breadth of items that are craftable in Minecraft including clothing, furniture, and tools.  
+Crafting has long been the subject of Minecraft agent research---our crafting tasks encompass the entire breadth of items that are craftable in Minecraft including clothing, furniture, and tools.
 At the beginning of each episode, the agents are initialized with a goal (e.g. make a bookshelf), different sets of resources (e.g. books and planks), and access to a crafting recipe, that is occasionally blocked.
 To complete the task, the agents must: (1) communicate with each other what items are in their inventory; (2) share with each other the crafting recipe if necessary; and (3) give each other resources to successfully craft the item.
 To make the crafting tasks more challenging, agents are given longer crafting objectives (e.g. crafting a compass which requires multiple steps).
@@ -85,9 +85,9 @@ Once again, each of these components can be controlled to procedurally generate 
 You can view the crafting task in action [here](https://www.youtube.com/shorts/VMAyxwMKiBc).
 
 
-## Installation 
+## Installation
 
-You **DO NOT** need Linux to run this, you can run on Windows with the --no-launch-world flag and by installing git bash. 
+You **DO NOT** need Linux to run this, you can run on Windows with the --no-launch-world flag and by installing git bash.
 
 Please follow the installation docs in the README to install mindcraft. You can create a docker image using the Dockerfile. `Join Server`
 

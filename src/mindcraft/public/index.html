@@ -648,11 +648,12 @@
                         input.type = 'number';
                         input.value = settings[key] ?? cfg.default ?? 0;
                         break;
-                    default:
+                    default: {
                         input = document.createElement('input');
                         input.type = 'text';
                         const defVal = settings[key] ?? cfg.default ?? '';
                         input.value = typeof defVal === 'object' ? JSON.stringify(defVal) : defVal;
+                    }
                 }
                 input.id = `agent-setting-${key}`;
                 input.addEventListener('input', onAgentSettingsChanged);

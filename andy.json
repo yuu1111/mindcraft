@@ -1,4 +1,4 @@
 {
-    "name": "andy",
-    "model": "qwen35-0_8b-q4km:latest"
+	"name": "andy",
+	"model": "qwen35-0_8b-q4km:latest"
 }

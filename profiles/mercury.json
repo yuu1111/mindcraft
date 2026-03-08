@@ -1,9 +1,9 @@
 {
-    "name": "Mercury",
+	"name": "Mercury",
 
-    "cooldown": 5000,
+	"cooldown": 5000,
 
-    "model": "mercury/mercury-coder-small",
+	"model": "mercury/mercury-coder-small",
 
-     "embedding": "openai"
+	"embedding": "openai"
 }

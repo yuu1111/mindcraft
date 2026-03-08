@@ -1,6 +1,4 @@
-(async (bot) => {
-
-/* CODE HERE */
-log(bot, 'Code finished.');
-
-})
+async (bot) => {
+	/* CODE HERE */
+	log(bot, "Code finished.");
+};
